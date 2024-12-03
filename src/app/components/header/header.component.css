@@ -1,0 +1,41 @@
+.logo-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.disclaimer {
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+.menuButton {
+    display: none;
+}
+
+.mobile-menu-item {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Estilos para smartphones e tablets */
+    .logo-container {
+        justify-content: left;
+    }
+
+    .logo-container img {
+        max-width: 70%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .menuButton {
+        display: inline;
+    }
+
+    .mobile-menu-item {
+        display: inline;
+        font-family: 'NunitoCustom', Helvetica, sans-serif;
+        font-size: 14px;
+    }    
+}

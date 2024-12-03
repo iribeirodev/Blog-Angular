@@ -1,0 +1,21 @@
+.menu-barra {
+    min-height: 3em; 
+    background-color: rgba(21, 158, 9, 0.85); 
+    border-radius: 0.5em;
+}
+.menu-item {
+    font-family: 'GabaritoCustom', Helvetica, sans-serif;
+    font-size: 14pt;
+}
+.menu-item a {
+    color: #ffffff; 
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    /* Estilos para smartphones e tablets */
+    .menu-barra {
+        display: none;
+    }
+}
+
