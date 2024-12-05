@@ -16,7 +16,7 @@ export class ItemPublicacaoComponent {
 
   constructor(private route: ActivatedRoute,
     private dataService: DataService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.url = this.route.snapshot.paramMap.get('url') || '';
@@ -25,15 +25,17 @@ export class ItemPublicacaoComponent {
 
   fetchPublicacao() {
     this.dataService.fetchPublicationByURL(this.url).subscribe({
-      next: (result: PublicacaoTextoDTO) => {
-        this.currentPublicacao = result.data;
+      next: (result: any) => {
+        if (Array.isArray(result.data) && result.data.length > 0) {
+          this.currentPublicacao = result.data[0];
+        } else {
+          this.currentPublicacao = result.data;
+        }
       },
-      error: (error) => {
-        console.log('ERRO', error);
-      },
-      complete: () => {
-        console.log('completed');
+      error: (err) => {
+        console.error('Erro ao carregar publicação', err);
       }
-    });    
-  }  
+    });
+  }
+
 }

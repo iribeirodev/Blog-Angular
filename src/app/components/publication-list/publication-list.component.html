@@ -1,50 +1,30 @@
-<div *ngIf="publicacoes.length > 0">
-    <div *ngFor="let p of publicacoes">
-        <div class="row">
-            <div class="col text-center">
-                <a href="publicacoes/{{p.url}}" class="titulo-artigo">
-                    <img class="img-fluid" src={{p.imageLink}} alt="" />
-                    {{p.titulo}}
-                </a>
+<div *ngIf="publicacoesGrouped.length > 0" class="image-grid">
+    <div *ngFor="let row of publicacoesGrouped" class="image-row" [ngClass]="{ 'single-item': row.length === 1 }">
+        <div class="image-container" *ngFor="let p of row">
+            <img [src]="p.imageLink" class="image-detail" />
+            <div class="image-caption-container">
+                
+                <p class="image-caption">
+                    <a href="/publicacoes/{{p.url}}">{{p.titulo}}</a>
+                </p>
+
+                <p class="image-subcaption">
+                    Publicado há {{ p.tempoPublicadoEmDias }} na seção
+                    <a href="/publicacoes/tipopublicacao/{{ p.tipoPublicacao }}">
+                        {{ p.tipoPublicacao }}
+                    </a>
+                </p>
+
+                <div class="tags-container">
+                    <a class="tag-link" *ngFor="let tag of p.tags" [routerLink]="'/publicacoes/tags/' + tag">
+                        {{ tag }}
+                    </a>
+                </div>           
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <ul style="list-style-type: none; display: flex; flex-direction: row; justify-content: center;">
-                    <li *ngFor="let tag of p.tags" style="text-align: center; margin-right: 10px;">
-                        <a href="publicacoes/tags/{{tag}}">{{ tag }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>        
-        <!-- <div class="row">
-            <div class="col text-center position-relative pt-3">
-                <a href="publicacoes/{{p.url}}" class="titulo-artigo">
-                    <img class="img-fluid" src="{{p.imageLink}}" alt="" style="filter: brightness(50%);width: 40%; height: auto;" />
-                    <div class="overlay-text">
-                        {{p.titulo}}
-                    </div>
-                </a>
-            </div>
-        </div>         -->
-        <!-- <div class="row">
-            <div class="col">
-                <p class="detalhe-artigo">{{p.detalhe}}</p>
-            </div>
-        </div>
-        <!--
-        <div class="row">
-            <div class="col">
-                <ul style="list-style-type: none; display: flex; flex-direction: row; justify-content: center;">
-                    <li *ngFor="let tag of p.tags" style="text-align: center; margin-right: 10px;">
-                        <a href="publicacoes/tags/{{tag}}">{{ tag }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        --> -->
     </div>
 </div>
+
 <div class="container text-center pt-5" *ngIf="show_nothing_here">
     <img src="/assets/img/nothinghere-removebg.png" alt="logo" />
     <h3>Nada por aqui ainda...</h3>

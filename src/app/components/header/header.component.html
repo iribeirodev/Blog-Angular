@@ -1,26 +1,26 @@
-<div class="row">
-    <div class="col logo-container">
-        <a href="#">
-            <img src="/assets/img/logo2.png" alt="logo" />
-        </a>
-    </div>    
-</div>
-<div class="row" style="background-color: rgba(0, 255, 0, 0.13);">
-    <div class="col-3 align-self-center text-center mobile-menu-item">
-        <span>Todas as Publicações</span>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/img/logo2.png" width="210" height="90" alt="logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Todas as Publicações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/publicacoes/tipopublicacao/noticias">Notícias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/publicacoes/tipopublicacao/tutoriais">Tutoriais</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/publicacoes/tipopublicacao/artigos">Artigos</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-3 align-self-center text-center mobile-menu-item">
-        <span>Notícias</span>
-    </div>
-    <div class="col-3 align-self-center text-center mobile-menu-item">
-        <span>Artigos</span>
-    </div>
-    <div class="col-3 align-self-center text-center mobile-menu-item">
-        <span>Tutoriais</span>
-    </div>
-</div>
-<div *ngIf="has_disclaimer" class="row">
-    <div class="col">
-        <h3 class="disclaimer">Em Desenvolvimento</h3>
-    </div>
-</div>
+  </nav>

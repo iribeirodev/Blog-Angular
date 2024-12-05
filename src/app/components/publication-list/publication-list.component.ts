@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PublicationListComponent {
   public publicacoes: ItemPublicacao[] = [];
+  public publicacoesGrouped: ItemPublicacao[][] = [];
 
   tag_criteria: string = '';
   tp_publicacao_criteria: string = '';
@@ -31,20 +32,26 @@ export class PublicationListComponent {
     } else {
       this.fetchPublicacoes();
     }
+  }
 
+  groupPublicacoes() {
+    const chunkSize = 2;
+    this.publicacoesGrouped = [];
+    for (let i = 0; i < this.publicacoes.length; i += chunkSize) {
+      this.publicacoesGrouped.push(this.publicacoes.slice(i, i + chunkSize));
+    }
   }
 
   fetchPublicacoesByTag() {
     this.dataService.fetchPublicationsByTag(this.tag_criteria).subscribe({
       next: (result: PublicacaoDTO) => {
         this.publicacoes = result.data || [];
+        this.groupPublicacoes();
         this.show_nothing_here = this.publicacoes.length === 0;
       },
       error: (error) => {
         console.log('ERRO', error);
         this.show_nothing_here = true;
-      },
-      complete: () => {
       }
     });       
   }
@@ -53,13 +60,14 @@ export class PublicationListComponent {
     this.dataService.fetchPublicationsByTipo(this.tp_publicacao_criteria).subscribe({
       next: (result: PublicacaoDTO) => {
         this.publicacoes = result.data || [];
+        this.groupPublicacoes();
         this.show_nothing_here = this.publicacoes.length === 0;
+        
+        console.log('publicacoes', this.publicacoesGrouped);
       },
       error: (error) => {
         console.log('ERRO', error);
         this.show_nothing_here = true;
-      },
-      complete: () => {
       }
     });       
   }
@@ -68,13 +76,13 @@ export class PublicationListComponent {
     this.dataService.fetchCurrentPublications().subscribe({
       next: (result: PublicacaoDTO) => {
         this.publicacoes = result.data || [];
+        this.groupPublicacoes();
         this.show_nothing_here = this.publicacoes.length === 0;
+        console.log('publicacoes', this.publicacoesGrouped);
       },
       error: (error) => {
         console.log('ERRO', error);
         this.show_nothing_here = true;
-      },
-      complete: () => {
       }
     });    
   }

@@ -1,4 +1,4 @@
 export const BlogConfig = {
-    production: false,
-    API_PATH: 'http://localhost:3000/api' //'https://iribeiroblog.koyeb.app/api' 
+    production: true,
+    API_PATH: 'https://iribeiroblog.koyeb.app/api' //'http://localhost:8000/api'
 };

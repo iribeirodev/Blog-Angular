@@ -3,6 +3,11 @@
     align-items: center; 
     justify-content: center;
 }
+.nav-link {
+    font-family: 'NunitoCustom', Helvetica, sans-serif;
+    font-size: 20px;
+}
+
 .disclaimer {
     background-color: red;
     color: white;
